@@ -8,35 +8,6 @@
 import Foundation
 import RxSwift
 
-struct URLConstructor {
-    let base = "https://api.nal.usda.gov/"
-    
-    let parameters: [String: Any] = [
-        "api_key": "DEMO_KEY",
-        "dataType": ["Foundation", "SR Legacy"].joined(separator: ","),
-        "pageSize": 15,
-        "pageNumber": 1,
-        "sortBy": "dataType.keyword",
-        "sortOrder": "asc"
-    ]
-    
-    func foodsList() -> URL? {
-        let urlString = base + "fdc/v1/foods/list"
-
-        guard var urlComponents = URLComponents(string: urlString) else {
-            return nil
-        }
-        urlComponents.queryItems = parameters.map { URLQueryItem(name: $0.key, value: "\($0.value)") }
-
-        guard let url = urlComponents.url else {
-            return nil
-        }
-        
-        return url
-    }
-    
-}
-
 class NetworkService {
     
     private let session: URLSession

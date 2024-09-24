@@ -21,6 +21,7 @@ class ProductListViewController: UIViewController {
         setupViews()
         bindVM()
         viewModel.fetchProducts()
+        viewModel.subscribeOnEvents()
     }
     
     private func setupViews() {
@@ -65,6 +66,5 @@ class ProductListViewController: UIViewController {
             .orEmpty
             .bind(to: viewModel.searchTextRelay)
             .disposed(by: disposeBag)
-        
     }
 }
